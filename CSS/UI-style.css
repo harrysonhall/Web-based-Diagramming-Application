@@ -1,0 +1,332 @@
+@font-face {
+	font-family: MonaSansRegular;
+	src: url("./Mona-Sans-Regular.otf");
+}
+
+@font-face {
+	font-family: MonaSansMedium;
+	src: url("./Mona-Sans-Medium.otf");
+}
+
+:root {
+	--dark-mode-background-color: #212121;
+	--UI-background-color: #2f2f2f;
+	--UI-off-white-color: #C1C2C6;
+	--UI-hover-color: #454545;
+	--UI-active-color: #535354;
+	--UI-active-tool-color: #1691E6;
+	--UI-object-panel-hover: #424750;
+	--UI-object-panel-text-hidden: #79797B;
+}
+
+html {
+	background: var(--dark-mode-background-color);
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+path {
+	pointer-events: none;
+}
+
+g {
+	pointer-events: none;
+}
+
+* {
+	border: solid red 1px;
+}
+
+.hidden {
+	display: none !important;
+	visibility: none;
+}
+
+#highlighter-tool {
+	display: none;
+}
+
+	.UI-panel {
+		background-color: var(--UI-background-color);
+
+		position: absolute;
+		z-index: 20;
+		user-select: none;
+
+		padding-top: 50px;
+		padding-bottom: 14px;
+
+		border: solid transparent 0px;
+		transition: border 300ms;
+	}
+
+			.drag-controls-icons {
+				width: 14px;
+				padding: 4px;
+				border-radius: 4px;
+
+				position: absolute;
+
+				transition: 250ms;
+			}
+
+				.drag-controls-icons:hover {
+					background-color: var(--UI-hover-color);
+				}
+
+				.drag-controls-icons:active {
+					background-color: var(--UI-active-color);
+				}
+
+			.drag-icon {
+				top: 14px;
+				left: 14px;
+			}
+
+				.drag-icon:hover {
+					cursor: grab;
+				}
+
+				.drag-icon:active {
+					cursor: grabbing;
+				}
+
+			.openClosePanel-icon {
+				top: 14px;
+				right: 14px;
+			}
+
+				.openClosePanel-icon:hover {
+					cursor: pointer;
+				}
+
+
+/* Header Panel */	
+	#header-panel {
+    	height: 45px;
+		padding: 0 20px;
+
+		display: flex;
+		align-items: center;
+
+		font-family: MonaSansMedium;
+		font-size: 15px;
+		color: var(--UI-off-white-color);
+	}
+
+		.home-icon {
+			width: 33px;
+		}
+
+		.canvas-title {
+			display: flex;
+			margin-left: auto;
+    		margin-right: auto;
+		}
+			.canvas-title > div {
+				margin-right: 10px;
+			}
+
+		.zoom {
+			display: flex;
+			position: relative;
+
+			font-size: 14px;
+			margin-right: 10px;
+			margin-left: 10px;
+		}
+			.zoom > div {
+				margin-right: 10px;
+			}
+
+			.zoom > hr {
+				height: 1px;
+				width: 100%;
+
+				position: absolute;
+				bottom: -10px;
+
+				background: var(--UI-off-white-color);
+				border: none;
+				border-radius: 10px;
+			}
+
+
+		.zoom-icon {
+			width: 18px;
+			padding: 5px;
+		}
+
+
+
+/* Tool Panel */	
+	#tool-panel {
+		position: absolute;
+		top: 55px;
+    	left: 20px;
+
+		padding-left: 7px;
+		padding-right: 7px;
+		border-radius: 5px;
+
+		display: flex;
+    	flex-direction: column;
+    	align-items: center;
+	}
+
+		.tool-panel-seperator {
+			width: 60%;
+			height: 1.5px;
+
+			background: #454545;
+			border: none;
+			border-radius: 10px;
+
+			margin: 10px 0px;
+		}
+
+		.tool {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			padding: 7px;
+			border-radius: 5px;
+			/* background: chocolate; */
+			margin: 2px 0;
+
+			width: 18px;
+			min-width: 20px;
+    		min-height: 20px;
+
+			transition: 250ms;
+
+			fill: black;
+		}
+
+			.tool:hover {
+				cursor: pointer;
+				background-color: var(--UI-hover-color);
+			}
+
+			.tool:active {
+				background-color: var(--UI-active-color);
+			}
+
+			.tool-icon {
+				transition: 250ms;
+			}
+
+				.tool:active .tool-icon {
+					fill: var(--UI-active-tool-color);
+				}
+
+/* Object Tree Panel */
+	#object-tree-panel {
+		position: absolute;
+    	top: 55px;
+    	left: 85px;
+    
+   	 	border-radius: 5px;
+
+		min-width: 240px;
+	}
+
+		.object-properties-search {
+			display: flex;
+
+
+			margin-right: 16px;
+			margin-left: 16px;
+		}
+
+			.search-icon {
+				width: 12px;
+			}
+
+			.arrow-icon {
+				width: 12px;
+			}
+
+			.search-bar {
+				margin-left: 5px;
+				margin-right: auto;
+    			background: transparent;
+				border-style: none;
+				outline: none;
+				width: 150px;
+
+				font-family: MonaSansRegular;
+				font-size: 11px;
+				color: #C1C2C6;
+			}
+
+		.object-panel-seperator {
+			height: 1.5px;
+
+			background: #454545;
+			border: none;
+			border-radius: 10px;
+
+			margin-top: 5px;
+			margin-bottom: 10px;
+			margin-right: 16px;
+			margin-left: 16px;
+		}
+
+		.object {
+			display: flex;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 16px;
+			padding-right: 16px;
+			
+			font-family: MonaSansRegular;
+			font-size: 12px;
+			text-align: center;
+			line-height: 15px;
+			color: var(--UI-object-panel-text-hidden);
+			transition: 250ms;
+		}
+
+		.object:hover {
+			background-color: var(--UI-object-panel-hover);
+		}
+
+			.object-icon {
+				width: 12px;
+				margin-right: 10px;
+			}
+
+			.object-title {
+				margin-right: auto;
+			}
+
+			.eye-lock-icons {
+				height: 12px;
+			}
+
+/* Object Properties Panel */
+	#object-properties-panel {
+		position: absolute;
+		top: 55px;
+		right: 20px;
+		border-radius: 5px;
+
+		width: 240px;
+	}
+
+		.object-properties-section {
+			padding: 14px;
+
+			font-family: MonaSansRegular;
+			font-size: 10px;
+			color: var(--UI-off-white-color);
+		}
+
+			.transform-input {
+				background-color: transparent;
+			}

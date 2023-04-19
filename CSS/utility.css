@@ -1,0 +1,4 @@
+.moving-UI-panel {
+	border: solid #1691E6 3px;
+	transition: border 500ms;
+}
