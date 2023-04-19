@@ -1,7 +1,8 @@
-import { dragControlsHandler } from "./eventListenerHandlers.js";
-import { zIndexHandler } from "./eventListenerHandlers.js";
-import { activeToolHandler } from "./eventListenerHandlers.js";
-import { canvasPointerDownHandler } from "./canvasHandlers.js";
+import { dragControlsHandler } from "./Handlers/UIPanelHandlers.js";
+import { zIndexHandler } from "./Handlers/UIPanelHandlers.js";
+import { activeToolHandler } from "./Handlers/UIPanelHandlers.js";
+import { canvasPointerDownHandler } from "./Handlers/canvasHandlers.js";
+import { canvasZoomPanHandler } from "./Handlers/canvasHandlers.js";
 
 
 export function pointerDownController(e) {
@@ -18,13 +19,26 @@ export function pointerDownController(e) {
 		
 		default:	break;
 	}
-
 }
+
+
+
 
 export function clickController(e) {
 
 	switch(e.target.dataset.type) {
 
 		case "tool":			activeToolHandler(e);			break;
+	}
+}
+
+
+
+
+export function wheelController(e) {
+
+	switch(e.target.dataset.type) {
+
+		case "canvas":			canvasZoomPanHandler(e);		break;
 	}
 }

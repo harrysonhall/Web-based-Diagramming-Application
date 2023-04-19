@@ -1,4 +1,4 @@
-#layer-1 {
+#canvas-layer-1 {
 	box-sizing: border-box;
 	position: absolute;
 
@@ -8,7 +8,7 @@
 	z-index: 1;
 }
 
-#layer-2 {
+#canvas-ayer-2 {
 	box-sizing: border-box;
 	position: absolute;
 
@@ -18,7 +18,7 @@
 	z-index: 2;
 }
 
-#layer-3 {
+#canvas-layer-3 {
 	box-sizing: border-box;
 	position: absolute;
 
