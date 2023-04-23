@@ -19,12 +19,5 @@ export const tools = {
 	'arrowLine': 	{  	isActive: false, 		HTMLiconNode: lineArrowIcon		},
 	'dynamicLine':	{  	isActive: false, 		HTMLiconNode: lineDynamicIcon	},
 	'text': 		{  	isActive: false, 		HTMLiconNode: textIcon			},
-	  
-}
-
-export const canvasState = {
-
-	isContextMenuOpened: false,
-	currentActiveTool: null,
-
+	
 }

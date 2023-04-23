@@ -1,18 +1,20 @@
-import Global from "./global.js"
-
-const {canvas1} = Global
-const {ctx1} = Global
+const canvas = document.querySelector("#layer-1");
+const ctx = canvas.getContext('2d');
 let scale = 1;
 let offsetX = 0;
 let offsetY = 0;
 let minScale;
 const gridSize = 50;
 
-function resizeCanvas1() {
-	canvas1.width = window.innerWidth * devicePixelRatio;
-	canvas1.height = window.innerHeight * devicePixelRatio;
+canvas.width = window.innerWidth * devicePixelRatio;
+	canvas.height = window.innerHeight * devicePixelRatio;
+ctx.scale(devicePixelRatio, devicePixelRatio)
 
-	ctx1.scale(devicePixelRatio, devicePixelRatio)
+function resizeCanvas() {
+	canvas.width = window.innerWidth * devicePixelRatio;
+	canvas.height = window.innerHeight * devicePixelRatio;
+
+	ctx.scale(devicePixelRatio, devicePixelRatio)
 	
 
 	const minWidthScale = window.innerWidth / 5000; // Calculate minScale based on the window width
@@ -20,59 +22,63 @@ function resizeCanvas1() {
     minScale = Math.max(minWidthScale, minHeightScale);
 }
 
-function clamp(value, min, max) {
-	return Math.min(Math.max(value, min), max);
-}
 
-
-
+// function resizeCanvas() {
+// 	canvas.width = window.innerWidth
+// 	canvas.height = window.innerHeight
+	
+// 	minScale = window.innerWidth / 5000; // Calculate minScale based on the window width
+// }
 
 function drawGrid() {
-	ctx1.strokeStyle = 'rgba(255, 255, 255, 0.2)';
-	ctx1.lineWidth = 1;
+	ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+	ctx.lineWidth = 1;
 
 	for (let x = 0; x <= 5000; x += gridSize) {
-		ctx1.beginPath();
-		ctx1.moveTo(x, 0);
-		ctx1.lineTo(x, 5000);
-		ctx1.stroke();
+		ctx.beginPath();
+		ctx.moveTo(x, 0);
+		ctx.lineTo(x, 5000);
+		ctx.stroke();
 	}
 
 	for (let y = 0; y <= 5000; y += gridSize) {
-		ctx1.beginPath();
-		ctx1.moveTo(0, y);
-		ctx1.lineTo(5000, y);
-		ctx1.stroke();
+		ctx.beginPath();
+		ctx.moveTo(0, y);
+		ctx.lineTo(5000, y);
+		ctx.stroke();
 	}
 }
 
 function draw() {
-	ctx1.save();
-	ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-	ctx1.translate(offsetX, offsetY);
-	ctx1.scale(scale, scale);
+	ctx.save();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.translate(offsetX, offsetY);
+	ctx.scale(scale, scale);
 
 	drawGrid();
 
-	ctx1.beginPath();
-	ctx1.strokeStyle = "white";
-	ctx1.lineWidth = 10;
-	ctx1.ellipse(100, 100, 25, 25, Math.PI / 4, 0, 2 * Math.PI);
-	ctx1.rect(0, 0, 5000, 5000);
-	ctx1.stroke();
-	ctx1.closePath();
+	ctx.beginPath();
+	ctx.strokeStyle = "white";
+	ctx.lineWidth = 10;
+	ctx.ellipse(100, 100, 25, 25, Math.PI / 4, 0, 2 * Math.PI);
+	ctx.rect(0, 0, 5000, 5000);
+	ctx.stroke();
+	ctx.closePath();
 
-	ctx1.restore();
+	ctx.restore();
 
 }
 
+function clamp(value, min, max) {
+	return Math.min(Math.max(value, min), max);
+}
 
-resizeCanvas1();
+resizeCanvas();
 draw();
 
 window.addEventListener('resize', (e) => {
 	console.log(e)
-	resizeCanvas1();
+	resizeCanvas();
 	draw();
 	console.log('resizing')
 });
@@ -80,7 +86,7 @@ window.addEventListener('resize', (e) => {
 window.addEventListener("wheel", function (e) {
 	e.preventDefault();
 
-	const rect = canvas1.getBoundingClientRect();
+	const rect = canvas.getBoundingClientRect();
 	const x = e.clientX - rect.left;
 	const y = e.clientY - rect.top;
 
@@ -100,12 +106,12 @@ window.addEventListener("wheel", function (e) {
 	}
 
 	// Clamp the offsetX and offsetY values based on the current scale
-	const maxX = (5000 * scale - (canvas1.width / devicePixelRatio)) * -1;
-	const maxY = (5000 * scale - (canvas1.height / devicePixelRatio)) * -1;
+	const maxX = (5000 * scale - (canvas.width / devicePixelRatio)) * -1;
+	const maxY = (5000 * scale - (canvas.height / devicePixelRatio)) * -1;
 	offsetX = clamp(offsetX, maxX, 0);
 	offsetY = clamp(offsetY, maxY, 0);
 
 
-	// resizeCanvas1();
+	// resizeCanvas();
 	draw();
 }, { passive: false });

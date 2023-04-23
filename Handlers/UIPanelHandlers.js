@@ -1,6 +1,6 @@
 import Global from "../global/global.js";
-import {canvasState} from "../global/canvasState.js";
-import {tools} from "../global/canvasState.js";
+import {canvasState} from "../global/canvasSession.js";
+import {tools} from "../global/tools.js";
 
 	const {contextMenu} = Global;
 	const {UIPanelsArray} = Global;

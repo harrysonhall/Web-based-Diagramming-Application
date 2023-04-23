@@ -1,27 +1,38 @@
+// UI
 import { dragControlsHandler } from "./Handlers/UIPanelHandlers.js";
 import { zIndexHandler } from "./Handlers/UIPanelHandlers.js";
 import { activeToolHandler } from "./Handlers/UIPanelHandlers.js";
-import { canvasPointerDownHandler } from "./Handlers/canvasHandlers.js";
-import { canvasZoomPanHandler } from "./Handlers/canvasHandlers.js";
+
+// Canvas
+import { canvasWheelHandler } from "./Handlers/canvasHandlers/canvasWheelHandler.js";
+
 
 
 export function pointerDownController(e) {
 
 	switch(e.target.dataset.type) {
 
-		case "UI-drag-control": 	dragControlsHandler(e);			break;
-
 		case "UI-panel":			zIndexHandler(e);				break;
 
 		case "UI-panel-controls":	zIndexHandler(e);				break;
 
-		case "canvas":				canvasPointerDownHandler(e);	break;
+		case "UI-drag-control": 	dragControlsHandler(e);			break;
+
+		// case "canvas":				canvasPointerDownHandler(e);	break;
 		
 		default:	break;
 	}
 }
 
 
+export function pointerMoveController(e) {
+
+	switch(e.target.dataset.type) {
+
+	
+	}
+
+}
 
 
 export function clickController(e) {
@@ -35,10 +46,10 @@ export function clickController(e) {
 
 
 
-export function wheelController(e) {
+export const wheelController = (e) => {
 
 	switch(e.target.dataset.type) {
 
-		case "canvas":			canvasZoomPanHandler(e);		break;
+		case "canvas":			canvasWheelHandler(e);		break;
 	}
 }

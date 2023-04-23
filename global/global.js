@@ -29,14 +29,6 @@ export default class Global {
 	static ctx2						= this.cavnas2.getContext('2d');
 	static ctx3						= this.cavnas3.getContext('2d');
 
-	// Canvas Zooom & Pan Variables
-	static minCanvasScale;
-	static canvasScale				= 1;
-	static canvasGridSize			= 50;
-	static zoomOffsetX				= 0;
-	static zoomOffsetY				= 0;
-	static transform;
-
 
 
 }

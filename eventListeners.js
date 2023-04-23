@@ -2,8 +2,8 @@ import { contextMenuHandler } from "./Handlers/UIPanelHandlers.js";
 import { pointerDownController } from "./eventListenerControllers.js";
 import { clickController } from "./eventListenerControllers.js";
 import { wheelController } from "./eventListenerControllers.js";
-import { resizeCanvas1 } from "./Handlers/canvasHandlerFunctions.js";
-import { draw } from "./Handlers/canvasViewHandlers.js";
+import { pointerMoveController } from "./eventListenerControllers.js";
+
 
 
 window.addEventListener('contextmenu', (e) => {
@@ -18,9 +18,15 @@ window.addEventListener('pointerdown', (e) => {
 
 })
 
+window.addEventListener('pointermove', (e) => {
+
+	pointerMoveController(e);
+	
+})
+
 window.addEventListener('click', (e) => {
 
-	// clickController(e);
+	clickController(e);
 
 })
 
@@ -30,10 +36,4 @@ window.addEventListener('wheel', (e) => {
 
 }, {passive: false})
 
-window.addEventListener('resize', (e) => {
-	console.log(e)
-	resizeCanvas1();
-	draw();
-	console.log('resizing')
-});
 
